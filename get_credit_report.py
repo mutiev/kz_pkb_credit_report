@@ -11,28 +11,10 @@ import xmltodict
 
 requests.packages.urllib3.disable_warnings()
 
-
-def download(url: str, fname: str):
-
-    resp = requests.get(url, stream=True)
-    total = int(resp.headers.get('content-length', 0))
-    with open(fname, 'wb') as file, tqdm(
-        desc=fname,
-        total=total,
-        unit='iB',
-        unit_scale=True,
-        unit_divisor=1024,
-    ) as bar:
-        for data in resp.iter_content(chunk_size=1024):
-            size = file.write(data)
-            bar.update(size)
-
-
 with open('iin_list.txt') as f:
     iin_list = f.read().splitlines()
 os.makedirs('tmp/', exist_ok=True)
 os.makedirs('download/', exist_ok=True)
-
 
 HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
@@ -60,12 +42,17 @@ params = {
 
 for iin in tqdm(iin_list):
     params['doc1_number'] = iin
+    if os.path.exists(f'download/{iin}.zip'):
+        print(f'{iin} already downloaded. skipped')
+        continue
 
     resp = requests.post(url, data=json.dumps(
         params), headers=HEADERS, verify=False)
+
     if resp.status_code != 200:
         print('\nError: status code is', resp.status_code)
         break
+
     with open('tmp/request.zip', 'wb') as f:
         f.write(resp.content)
 
@@ -79,11 +66,11 @@ for iin in tqdm(iin_list):
         print('\n\tIIN ', iin)
         print('\tErrorCode:', status['Status']['ErrorCode'])
         print('\tErrorMessage', status['Status']['ErrorMessage'])
-        break
+        continue
 
-    print('resp done')
     shutil.move('tmp/request.zip', f'download/{iin}.zip')
-    break
+
+print('Done.')
 
 
 # %%

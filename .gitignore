@@ -8,3 +8,4 @@ tmp/
 *.rar
 iin_list*
 credentials.json
+*.zip
