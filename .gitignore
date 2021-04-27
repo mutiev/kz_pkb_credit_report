@@ -1,0 +1,10 @@
+.DS_Store
+credentials.txt
+pkb_credit_report.code-workspace
+download/
+tmp/
+*.xlsx
+*.xml
+*.rar
+iin_list*
+credentials.json

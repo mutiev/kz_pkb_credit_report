@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="dictType">
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="locationType">
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="katoId" type="xs:string" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="locationType2">
+    <xs:attribute name="locationId" type="xs:string" use="optional"/>
+    <xs:attribute name="katoId" type="xs:string" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="amountType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="currency" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="valueType">
+    <xs:all>
+      <xs:element name="ValueTypeId" type="xs:string" minOccurs="0"/>
+      <xs:element name="Value" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="500"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LanguageCode" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="DateType">
+    <xs:restriction base="xs:date">
+      <xs:maxInclusive value="2098-01-01"/>
+      <xs:minInclusive value="1900-01-01"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TextType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="language" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="multiType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContractStatusType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="ThirdPartyHolder" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <!--<xs:attribute name="delete" type="xs:boolean"/>-->
+  </xs:complexType>
+  
+  <xs:complexType name="CollateralType">
+    <xs:all>
+      <xs:element name="Location" minOccurs="0" type="locationType"/>
+      <xs:element name="AdditionalInformation" minOccurs="0" type="multiType"/>
+      <xs:element name="Value" minOccurs="0">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="currency" type="xs:string"/>
+              <xs:attribute name="typeId" type="xs:string"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="typeId" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="CollateralsType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Collateral" minOccurs="0" maxOccurs="unbounded" type="CollateralType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DependantsType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Dependant" minOccurs="0" maxOccurs="unbounded" type="DependantType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="OrganizationType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="BIN" minOccurs="0" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="DependantType">
+    <xs:attribute name="typeId" type="xs:string"/>
+    <xs:attribute name="count" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="IndividualType">
+    <xs:all>
+      <xs:element name="FirstName" minOccurs="0" type="multiType"/>
+      <xs:element name="Surname" minOccurs="0" type="multiType"/>
+      <xs:element name="FathersName" minOccurs="0" type="multiType"/>
+      <xs:element name="BirthSurname" minOccurs="0" type="multiType"/>
+      <xs:element name="Gender" minOccurs="0" type="xs:string"/>
+      <xs:element name="Classification" minOccurs="0" type="dictType"/>
+      <xs:element name="Residency" minOccurs="0" type="dictType"/>
+      <xs:element name="Education" minOccurs="0" type="dictType"/>
+      <xs:element name="MaritalStatus" minOccurs="0" type="dictType"/>
+      <xs:element name="DateOfBirth" type="xs:string" minOccurs="0"/>
+      <xs:element name="NegativeStatus" minOccurs="0" type="dictType"/>
+      <xs:element name="Profession" minOccurs="0" type="dictType"/>
+      <xs:element name="EconomyActivityGroup" minOccurs="0" type="dictType"/>
+      <xs:element name="EmploymentNature" minOccurs="0" type="dictType"/>
+      <xs:element name="Citizenship" minOccurs="0" type="locationType"/>
+      <xs:element name="Salary" minOccurs="0" type="dictType"/>
+      <xs:element name="Identifications" minOccurs="0" type="IdentificationsType"/>
+      <xs:element name="Addresses" minOccurs="0" type="AddressesType"/>
+      <xs:element name="Communications" minOccurs="0" type="CommunicationsType"/>
+      <xs:element name="Dependants" minOccurs="0" type="DependantsType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CEOType">
+    <xs:all>
+      <xs:element name="FirstName" minOccurs="0" type="multiType"/>
+      <xs:element name="Surname" minOccurs="0" type="multiType"/>
+      <xs:element name="FathersName" minOccurs="0" type="multiType"/>
+      <xs:element name="DateOfBirth" type="xs:string" minOccurs="0"/>
+      <xs:element name="Identifications" minOccurs="0" type="IdentificationsType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CompanyType">
+    <xs:all>
+      <xs:element name="Name" minOccurs="0" type="multiType"/>
+      <xs:element name="Status" minOccurs="0" type="dictType"/>
+      <xs:element name="TradeName" minOccurs="0" type="multiType"/>
+      <xs:element name="Abbrevation" minOccurs="0" type="multiType"/>
+      <xs:element name="LegalForm" minOccurs="0" type="dictType"/>
+      <xs:element name="Ownership" minOccurs="0" type="dictType"/>
+      <xs:element name="Nationality" minOccurs="0" type="locationType"/>
+      <xs:element name="RegistrationDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="EmployeeCount" minOccurs="0" type="dictType"/>
+      <xs:element name="EconomicActivity" minOccurs="0" type="dictType"/>
+      <xs:element name="Addresses" minOccurs="0" type="AddressesType"/>
+      <xs:element name="Identifications" minOccurs="0" type="IdentificationsType"/>
+      <xs:element name="Communications" minOccurs="0" type="CommunicationsType"/>
+      <xs:element name="Management" minOccurs="0" type="ManagementType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="EntityType">
+    <xs:choice>
+      <xs:element name="Individual" minOccurs="0" type="IndividualType"/>
+      <xs:element name="Company" minOccurs="0" type="CompanyType"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="SubjectType">
+    <xs:sequence>
+      <xs:element name="Entity" minOccurs="0" type="EntityType"/>
+    </xs:sequence>
+    <xs:attribute name="roleId" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SubjectsType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Subject" minOccurs="0" maxOccurs="unbounded" type="SubjectType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentificationsType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Identification" minOccurs="0" maxOccurs="unbounded" type="IdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressesType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Address" minOccurs="0" maxOccurs="unbounded" type="AddressType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CommunicationsType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Communication" type="CommunicationType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ManagementType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="CEO" minOccurs="0" maxOccurs="unbounded" type="CEOType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificationType">
+    <xs:all>
+      <xs:element name="Number" type="xs:string" minOccurs="0"/>
+      <!--xs:unsignedLong"/>-->
+      <xs:element name="RegistrationDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="IssueDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="ExpirationDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="IssuedBy" minOccurs="0" type="locationType"/>
+      <xs:element name="DocumentTypeText" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="typeId" type="xs:string" use="optional"/>
+    <xs:attribute name="rank" type="xs:string" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="AddressType">
+    <xs:all>
+      <xs:element name="StreetName" minOccurs="0" type="multiType"/>
+      <xs:element name="Streetnumber" minOccurs="0" type="xs:string"/>
+      <xs:element name="PostBox" minOccurs="0" type="xs:string"/>
+      <xs:element name="AdditionalInformation" minOccurs="0" type="multiType"/>
+      <xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="typeId" type="xs:string" use="optional"/>
+    <xs:attribute name="locationId" type="xs:string" use="optional"/>
+    <xs:attribute name="katoId" type="xs:string" use="optional"/>
+    <!--xs:attribute name="locationId" type="xs:int" use="optional"/-->
+  </xs:complexType>
+  <xs:complexType name="CommunicationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="typeId" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="non-empty-string">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="typeIdCurrency">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="typeCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="myDecimal_18_2">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="14"/>
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

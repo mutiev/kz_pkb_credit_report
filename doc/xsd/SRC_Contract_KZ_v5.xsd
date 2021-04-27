@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.datapump.cig.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://www.datapump.cig.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="SRC_Common_KZ_v5.xsd"/>
+  <xs:include schemaLocation="SRC_Noninstalment_KZ_v5.xsd"/>
+  <xs:include schemaLocation="SRC_Instalment_KZ_v5.xsd"/>
+  <xs:include schemaLocation="SRC_Credit_KZ_v5.xsd"/>
+  <xs:element name="Records">
+<!--    <xs:unique name="uqContractcodeStartdate">
+      <xs:selector xpath="Records"/>
+      <xs:field xpath="Records/Contract/General/ContractCode"/>
+      <xs:field xpath="Records/Contract/General/StartDate"/>
+    </xs:unique>-->
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Contract" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="General" minOccurs="0">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="ContractCode" minOccurs="0" type="xs:string"/>
+                    <xs:element name="AgreementNumber" minOccurs="0" type="xs:string"/>
+                    <xs:element name="ProviderGroupExplicit" minOccurs="0" type="xs:boolean"/>
+                    <xs:element name="FundingType" minOccurs="0" type="dictType"/>
+                    <xs:element name="CreditPurpose" minOccurs="0" type="dictType"/>
+                    <xs:element name="CreditPurpose2" minOccurs="0" type="dictType"/>
+                    <xs:element name="CreditObject" minOccurs="0" type="dictType"/>
+                    <xs:element name="ContractPhase" minOccurs="0" type="dictType"/>
+                    <xs:element name="ContractStatus" minOccurs="0" type="ContractStatusType"/>
+                    <xs:element name="Organization" minOccurs="0" type="OrganizationType"/>
+                    <xs:element name="ApplicationDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="StartDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="EndDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="ActualDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="RealPaymentDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="SpecialRelationship" minOccurs="0" type="dictType"/>
+                    <xs:element name="AnnualEffectiveRate" type="xs:string" minOccurs="0"/>
+                    <xs:element name="NominalRate" type="xs:string" minOccurs="0"/>
+                    <xs:element name="AmountProvisions" minOccurs="0" type="amountType"/>
+                    <xs:element name="LoanAccount" minOccurs="0" type="multiType"/>
+                    <xs:element name="GracePrincipal" minOccurs="0" type="dictType"/>
+                    <xs:element name="GracePay" minOccurs="0" type="dictType"/>
+                    <xs:element name="PlaceOfDisbursement" minOccurs="0" type="locationType2"/>
+                    <xs:element name="Classification" minOccurs="0" type="dictType"/>
+                    <xs:element name="ParentContractCode" minOccurs="0" type="xs:string"/>
+                    <xs:element name="ParentProvider" minOccurs="0" type="dictType"/>
+                    <xs:element name="ParentContractStatus" minOccurs="0" type="dictType"/>
+                    <xs:element name="ParentOperationDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="ProlongationCount" type="xs:string" minOccurs="0"/>
+                    <xs:element name="BranchLocation" minOccurs="0" type="locationType"/>
+                    <xs:element name="SaleLocation" minOccurs="0" type="locationType"/>
+                    <xs:element name="AvailableDate" minOccurs="0" type="xs:string"/>
+                    <xs:element name="FundingSource" minOccurs="0" type="dictType"/>
+                    <xs:element name="Collaterals" minOccurs="0" type="CollateralsType"/>
+                    <xs:element name="Subjects" minOccurs="0" type="SubjectsType"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Type" minOccurs="0">
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:element name="NonInstalment" minOccurs="0" type="NoninstalmentType"/>
+                    <xs:element name="Instalment" minOccurs="0" type="InstalmentType"/>
+                    <xs:element name="Credit" minOccurs="0" type="CreditType"/>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="operation" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

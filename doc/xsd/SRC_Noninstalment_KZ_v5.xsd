@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.datapump.cig.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datapump.cig.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="SRC_Common_KZ_v5.xsd"/>
+  <xs:complexType name="Record4noninstalmentType">
+    <xs:all>
+      <xs:element name="CreditUsage" minOccurs="0" type="dictType"/>
+      <xs:element name="UsedAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="OverdueAmount" minOccurs="0" type="amountType"/>
+    </xs:all>
+    <xs:attribute name="accountingDate" type="xs:string"/>
+  </xs:complexType>
+  
+  <xs:complexType name="Records4noninstalmentType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Record" maxOccurs="unbounded" type="Record4noninstalmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NoninstalmentType">
+    <xs:all>
+      <xs:element name="CreditLimit" minOccurs="0" type="amountType"/>
+      <xs:element name="Records" minOccurs="0" maxOccurs="1" type="Records4noninstalmentType"/>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.datapump.cig.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.datapump.cig.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="SRC_Common_KZ_v5.xsd"/>
+  
+  <xs:complexType name="Record4creditType">
+    <xs:all>
+      <xs:element name="Usage" type="xs:string" minOccurs="0"/>
+      <xs:element name="MonthlyInstalmentAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="ResidualAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="OverdueInstalmentCount" type="xs:string" minOccurs="0"/>
+      <xs:element name="OverdueAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="Fine" minOccurs="0" type="amountType"/>
+      <xs:element name="Penalty" minOccurs="0" type="amountType"/>
+      <xs:element name="ProlongationStartDate" minOccurs="0" type="xs:string"/>
+      <xs:element name="ProlongationEndDate" minOccurs="0" type="xs:string"/>
+      <xs:element name="AvailableLimit" minOccurs="0" type="amountType"/>
+    </xs:all>
+    <xs:attribute name="accountingDate" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Record4creditType4Kcell">
+    <xs:all>
+      <xs:element name="Usage" type="xs:string" minOccurs="0"/>
+      <xs:element name="MonthlyInstalmentAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="UsedAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="OverdueInstalmentCount" type="xs:string" minOccurs="0"/>
+      <xs:element name="OverdueAmount" minOccurs="0" type="amountType"/>
+      <xs:element name="Fine" minOccurs="0" type="amountType"/>
+      <xs:element name="Penalty" minOccurs="0" type="amountType"/>
+      <xs:element name="ProlongationStartDate" minOccurs="0" type="xs:string"/>
+      <xs:element name="ProlongationEndDate" minOccurs="0" type="xs:string"/>
+      <xs:element name="AvailableLimit" minOccurs="0" type="amountType"/>
+    </xs:all>
+    <xs:attribute name="accountingDate" type="xs:string"/>
+  </xs:complexType>
+  
+  <xs:complexType name="Records4creditType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Record" maxOccurs="unbounded" type="Record4creditType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Records4creditType4Kcell">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Record" maxOccurs="unbounded" type="Record4creditType4Kcell"/>
+    </xs:sequence>
+  </xs:complexType>
+    
+  <xs:complexType name="CreditType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="CreditLimit" minOccurs="0" type="amountType"/>
+      <xs:element name="Records" minOccurs="0" maxOccurs="1" type="Records4creditType"/>
+      <xs:element name="RecordsList" minOccurs="0" maxOccurs="1" type="Records4creditType4Kcell"/>
+    </xs:sequence>
+    <xs:attribute name="paymentMethodId" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>

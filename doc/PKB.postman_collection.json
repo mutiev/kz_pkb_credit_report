@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "4d4d956e-1394-4cb9-9f5b-c7dd823012cb",
+		"name": "PKB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_available_report",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"7000002002\",\n  \"password\": \"12345678\",\n  \"doc1_type\": 14,\n  \"doc1_number\": \"891026301046\",\n  \"locale\": \"ru-RU\",\n  \"is_need_pdf\": 1,\n  \"is_need_html\": 1,\n  \"consent_confirmed\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://test2.1cb.kz/pdf_service/get_available_reports",
+				"description": "123"
+			},
+			"response": [
+				{
+					"name": "https://test2.1cb.kz/pdf_service/get_available_reports",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"7000002002\",\n  \"password\": \"12345678\",\n  \"doc1_type\": 14,\n  \"doc1_number\": \"821020000102\",\n  \"locale\": \"ru-RU\",\n  \"is_need_pdf\": 1,\n  \"is_need_html\": 1,\n  \"consent_confirmed\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://test2.1cb.kz/pdf_service/get_available_reports"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "raw",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.13.1"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 27 Apr 2021 05:44:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/zip"
+						},
+						{
+							"key": "Content-Length",
+							"value": "548"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "public, max-age=43200"
+						},
+						{
+							"key": "Expires",
+							"value": "Tue, 27 Apr 2021 17:44:47 GMT"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						}
+					],
+					"cookie": [],
+					"body": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000�]�R\u001f\u0015\u0002��\u0000\u0000\u0000�\u0001\u0000\u0000\u0015\u0000\u0000\u0000available_reports.xml��Mj\u0002A\u0010F�R�*Y����\b�\\A�\u0013\u0018��\u0001P��n2�.\u0014D�\t9�\u0011�L\"�^�+x\u0012�U\u0012$��7]Tu��\u001f��\u001f���h�{�ڭ���.ܖ\u0014u\u001b�����\noXq�\u0004)\fք\u0017ly�\u000bE��~`�:�|�\u0016�{�\u0013�u�R���V��\u0012���|\u0015X�\r\u0012���\f\u001f\u0004�\u0011O\u0011sD\u0019�N�\u0010k�OOs��Iח������پ#'R�'<�X�\u0012o\"�����\n��so.}�����\"��*tu��\u001f���$>�����\u0004��ڲ�/����\u0001PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000�]�R�mF�G\u0000\u0000\u0000i\u0000\u0000\u0000\n\u0000\u0000\u0000status.xml�\t.I,)-��q-*�/҇���)�0�ojqqb:�\u001b�Z�_T�bgajhnfl�\u000f\u0017�\t\u0005)\u00012�LM\r�\f\fl�a\u00026�P\u000b\u0000PK\u0001\u0002\u0014\u0003\u0014\u0000\u0000\u0000\b\u0000�]�R\u001f\u0015\u0002��\u0000\u0000\u0000�\u0001\u0000\u0000\u0015\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0001\u0000\u0000\u0000\u0000available_reports.xmlPK\u0001\u0002\u0014\u0003\u0014\u0000\u0000\u0000\b\u0000�]�R�mF�G\u0000\u0000\u0000i\u0000\u0000\u0000\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0001$\u0001\u0000\u0000status.xmlPK\u0005\u0006\u0000\u0000\u0000\u0000\u0002\u0000\u0002\u0000{\u0000\u0000\u0000�\u0001\u0000\u0000\u0000\u0000"
+				}
+			]
+		},
+		{
+			"name": "get__report",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"7000002002\",\n    \"password\": \"12345678\",\n    \"doc1_type\": 14,\n    \"doc1_number\": \"891026301046\",\n    \"report_type\": 6,    \n    \"consent_confirmed\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://test2.1cb.kz/pdf_service/get_report"
+			},
+			"response": []
+		}
+	]
+}
